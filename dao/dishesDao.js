@@ -30,6 +30,19 @@ exports.queryDish = async function(pageIndex,pageSize,queryObj){
 };
 
 
+exports.deleteDish = async function(dish){
+	return new Promise( (resolve, reject) =>{
+		dishModel.deleteOne(dish,(err, result)=>{
+			if(err){
+				reject(err);
+			}else{
+				resolve(result);
+			}
+		});
+	});
+};
+
+
 exports.dishCount = async function(queryObj){
 	return new Promise( (resolve, reject)=>{
 		dishModel.count(queryObj,(err,result)=>{

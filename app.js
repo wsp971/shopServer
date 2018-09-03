@@ -12,6 +12,7 @@ const userRouter  = require('./router/user');
 const shopRouter  = require('./router/shop');
 const adminUserRouter  = require('./router/adminUser');
 const dishRouter  = require('./router/dishes');
+const miniProgram = require('./router/miniProgram');
 
 //允许跨域访问 详细配置：https://www.npmjs.com/package/koa2-cors
 app.use(cors({
@@ -28,6 +29,7 @@ router.use('/user',userRouter.routes());
 router.use('/shop',shopRouter.routes());
 router.use('/adminuser',adminUserRouter.routes());
 router.use('/dish',dishRouter.routes());
+router.use('/miniProgram',miniProgram.routes());
 
 
 

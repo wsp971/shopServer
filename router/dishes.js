@@ -3,7 +3,6 @@ const koaRouter = require('koa-router');
 const router = new koaRouter();
 const dishDao = require('../dao/dishesDao');
 
-
 router.post('/insert',async (ctx)=>{
 	
 	// let newDish = Object.assign(ctx.query,{id: + new Date()});
@@ -36,4 +35,20 @@ router.get('/dishList', async ctx=>{
 		ctx.body = e;
 	}
 });
+
+router.get('/delete', async ctx=>{
+	try{
+		let deleteDish = {_id: ctx.query.id};
+		let result = await dishDao.deleteDish(deleteDish);
+		if(result){
+			ctx.body = {code:0,msg:'success'}
+		}else{
+			ctx.body={code: -1,msg:'delete fail'};
+		}
+	}catch(e){
+		ctx.body={code: -1,msg:'delete fail'};
+	}
+});
+
+
 module.exports = router;

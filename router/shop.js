@@ -2,8 +2,36 @@ const koaRouter = require('koa-router');
 const router = new koaRouter();
 const shopDao = require('../dao/shopDao');
 
-router.get('/insert',async (ctx)=>{
-	let newShop = Object.assign(ctx.query,{id: + new Date()});
+const multer = require('koa-multer');
+
+const publicPath = 'http://aoshiman.com.cn/uploads/';
+
+
+let  storage = multer.diskStorage({
+	//文件保存路径
+	destination : function (req, file, cb) {
+		cb(null, '/data/www/uploads')
+		// cb(null, '../config/');
+	},
+	//修改文件名称
+	filename : function (req, file, cb) {
+		var fileFormat = ( file.originalname ).split(".");
+		cb(null, Date.now() + "." + fileFormat[fileFormat.length - 1]);
+	}
+});
+
+
+var upload = multer({ storage: storage });
+
+router.post('/upload', upload.single('fileInput'), async (ctx, next) => {
+	ctx.body = {
+		filename:  publicPath + ctx.req.file.filename           //返回文件名
+	}
+});
+
+
+router.post('/insert', async (ctx)=>{
+	let newShop = Object.assign(ctx.request.body,{id: + new Date()});
 	try{
 		let result = await shopDao.insertShop(newShop);
 		ctx.body = {
@@ -43,12 +71,12 @@ router.get('/queryByid', async ctx=>{
 	}
 });
 
-router.get('/update', async ctx =>{
+router.post('/update', async ctx =>{
 		let oldShop = {
-			id: ctx.query.id
+			id: ctx.request.body.id
 		};
 		try{
-			let result = await shopDao.updateShop(oldShop,ctx.query);
+			let result = await shopDao.updateShop(oldShop,ctx.request.body);
 			if(result){
 				ctx.body = {code:0,msg:'success'}
 			}else{

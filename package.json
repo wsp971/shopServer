@@ -13,11 +13,13 @@
   "author": "wangshiping5",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "koa": "^2.5.2",
     "koa-bodyparser": "^4.2.1",
     "koa-compose": "^4.1.0",
     "koa-compress": "^3.0.0",
     "koa-cors": "0.0.16",
+    "koa-multer": "^1.0.2",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
     "koa2-cors": "^2.0.6",

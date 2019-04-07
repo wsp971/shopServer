@@ -25,6 +25,7 @@ exports.getSessionFromWeixin = function(code){
 };
 
 
+
 exports.addNewClientUser = function(userObj){
 	return new Promise((resolve,reject)=>{
 		let userInstance = new miniProgramUserModel(userObj);
@@ -37,6 +38,7 @@ exports.addNewClientUser = function(userObj){
 		});
 	});
 };
+
 
 
 exports.syncClientUser = function(newUserObj){
@@ -53,6 +55,7 @@ exports.syncClientUser = function(newUserObj){
 };
 
 
+
 exports.findClientUser = function(userObj){
 	return new Promise((resolve,reject)=>{
 		miniProgramUserModel.find(userObj,(err, result)=>{
@@ -64,4 +67,7 @@ exports.findClientUser = function(userObj){
 		});
 	});
 };
+
+
+
 

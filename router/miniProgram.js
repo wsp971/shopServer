@@ -1,6 +1,7 @@
 const koaRouter = require('koa-router');
 const router = new koaRouter();
 const miniProgramSao = require('../dao/miniProgramSao');
+const dishDao = require('../dao/dishesDao');
 
 
 router.get('/getsessionkey',async ctx =>{
@@ -80,6 +81,13 @@ router.get('/syncUserInfo',async ctx =>{
 });
 
 
+
+router.get('/suggestFood', async ctx =>{
+	
+	dishDao.queryDish()
+	
+	
+});
 
 
 

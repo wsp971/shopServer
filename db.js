@@ -19,13 +19,13 @@ function connection(){
 
 exports.connection = connection;
 
-
-
 const adminLoginUserSchema = new mongoose.Schema({
 	username:String,
 	password:String,
 	name:String
 });
+
+
 
 const shopSchema = new mongoose.Schema({
 	id:Number,
@@ -33,11 +33,15 @@ const shopSchema = new mongoose.Schema({
 	name:String,
 	phone:String,
 	star:Number,
-	logo:String,
 	contacts:String,
 	address: String,
+	latLng:{
+		lat:String,
+		lng:String
+	},
 	favourite: Number
 });
+
 
 const dishSchema = new mongoose.Schema({
 	name:String,
@@ -47,8 +51,10 @@ const dishSchema = new mongoose.Schema({
 	description:String,
 	type:Number,
 	tags:Array,
-	shopid:Number,
+	price: Number,
+	shopid:Number
 });
+
 
 const clientUser = new mongoose.Schema({
 	nickName:String,
@@ -59,15 +65,17 @@ const clientUser = new mongoose.Schema({
 	country: String,
 	language: String,
 	openid: String,
+	favDishes:[],
+	favShops:[],
+	
 });
+
 
 
 const shopModel = mongoose.model('shop', shopSchema);
 const adminLoginUserModel = mongoose.model('adminLoginUser', adminLoginUserSchema);
 const dishModel = mongoose.model('dish', dishSchema);
 const clientUserModel = mongoose.model('clientUser', clientUser);
-
-
 
 exports.shopModel = shopModel;
 exports.adminLoginUserModel = adminLoginUserModel;

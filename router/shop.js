@@ -3,6 +3,7 @@ const router = new koaRouter();
 const shopDao = require('../dao/shopDao');
 
 const multer = require('koa-multer');
+// cb(null, '../config/');
 
 const publicPath = 'http://aoshiman.com.cn/uploads/';
 
@@ -11,7 +12,6 @@ let  storage = multer.diskStorage({
 	//文件保存路径
 	destination : function (req, file, cb) {
 		cb(null, '/data/www/uploads')
-		// cb(null, '../config/');
 	},
 	//修改文件名称
 	filename : function (req, file, cb) {
@@ -104,6 +104,23 @@ router.get('/delete',async ctx =>{
 	
 });
 
+
+
+router.get("/getClientIp", async ctx =>{
+	ctx.body = {
+		code:0,
+		ip: getClientIp(ctx.req),
+		msg:"success"
+	}
+});
+
+
+function getClientIp(req) {
+	return req.headers['x-forwarded-for'] ||
+		req.connection.remoteAddress ||
+		req.socket.remoteAddress ||
+		req.connection.socket.remoteAddress;
+};
 
 module.exports = router;
 

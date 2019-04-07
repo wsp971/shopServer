@@ -4,8 +4,10 @@ let router = new koaRouter();
 
 router.get('/login',async (ctx)=>{
 	try{
+		console.log('login param',ctx);
 		let result =  await adminUserDao.login(ctx.query);
 		if(result && result[0]){
+			console.log('login info:',result[0].username,result[0].name,result[0]);
 			ctx.cookies
 			.set('username',result[0].username,{
 				httpOnly:false,
@@ -31,7 +33,7 @@ router.get('/login',async (ctx)=>{
 });
 
 router.get('/register',async ctx =>{
-	
+	console.log('register param:', ctx.query);
 	try{
 		let result = await adminUserDao.insertAdminUser(ctx.query);
 		ctx.body = {code:0,msg:'success',data:result};

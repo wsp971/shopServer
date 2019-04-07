@@ -42,7 +42,6 @@ app
 router.get('/lala',async (ctx,next)=>{
 	ctx.body = {name:'llaalal'};
 	await next();
-	ctx.response.end();
 });
 
 module.exports= app;

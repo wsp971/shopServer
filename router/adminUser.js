@@ -10,15 +10,15 @@ router.get('/login',async (ctx)=>{
 			console.log('login info:',result[0].username,result[0].name,result[0]);
 			ctx.cookies
 			.set('username',result[0].username,{
-				httpOnly:false,
-				domain:'.aoshiman.com.cn',
+				httpOnly:true,
+				domain: 'aoshiman.com.cn',
 				path:'/',
 				secure:false,
 				expires: new Date(Date.now() + 30* 60* 1000)
 			})
 			.set('loginname',encodeURIComponent(result[0].name),{
 				httpOnly:false,
-				domain:'.aoshiman.com.cn',
+				domain:'aoshiman.com.cn',
 				path:'/',
 				secure:false,
 				expires: new Date(Date.now() + 30* 60* 1000)

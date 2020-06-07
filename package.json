@@ -4,7 +4,12 @@
   "description": "koa server",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "pm2  start --name shopServer ./bin/start.js  ",
+    "dev": "pm2 start --watch --name DevShopServer ./bin/start.js ",
+    "info": "pm2 list",
+    "stop:dev": "pm2 stop --name DevShopServer",
+    "stop": "pm2 stop --name ShopServer"
   },
   "keywords": [
     "koa",
@@ -23,6 +28,7 @@
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
     "koa2-cors": "^2.0.6",
-    "mongoose": "^5.2.9"
+    "mongoose": "^5.2.9",
+    "pm2": "^4.4.0"
   }
 }

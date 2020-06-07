@@ -7,10 +7,10 @@ const path = require('path');
 const cors = require('koa2-cors');
 const app = new koa();
 const router = new koaRouter();
-const userRouter  = require('./router/user');
-const shopRouter  = require('./router/shop');
-const adminUserRouter  = require('./router/adminUser');
-const dishRouter  = require('./router/dishes');
+const userRouter = require('./router/user');
+const shopRouter = require('./router/shop');
+const adminUserRouter = require('./router/adminUser');
+const dishRouter = require('./router/dishes');
 const miniProgram = require('./router/miniProgram');
 
 //允许跨域访问 详细配置：https://www.npmjs.com/package/koa2-cors
@@ -24,32 +24,32 @@ const options = { threshold: 2048 };
 
 app.use(koaCompress(options));//koa开启gzip压缩
 
-app.use(logincheck);
+// app.use(logincheck);
 
-router.use('/user',userRouter.routes());
-router.use('/shop',shopRouter.routes());
-router.use('/adminuser',adminUserRouter.routes());
-router.use('/dish',dishRouter.routes());
-router.use('/miniProgram',miniProgram.routes());
+router.use('/user', userRouter.routes());
+router.use('/shop', shopRouter.routes());
+router.use('/adminuser', adminUserRouter.routes());
+router.use('/dish', dishRouter.routes());
+router.use('/miniProgram', miniProgram.routes());
 
 app
-.use(router.routes())
-.use(router.allowedMethods());
+	.use(router.routes())
+	.use(router.allowedMethods());
 
-router.get('/lala',async (ctx,next)=>{
-	ctx.body = {name:'llaalal'};
+router.get('/lala', async (ctx, next) => {
+	ctx.body = { name: 'llaalal' };
 	await next();
 });
 
-async function logincheck(ctx, next) {
-	const username = ctx.cookies.get('username');
-	const loginname = ctx.cookies.get('loginname');
-	if (ctx.path.indexOf('login') == -1 && (!username || !loginname)) {
-		ctx.redirect('https://aoshiman.com.cn/shopAdmin/html/login.shtml');
-		return;
-	}
-	await next();
-}
+// async function logincheck(ctx, next) {
+// 	const username = ctx.cookies.get('username');
+// 	const loginname = ctx.cookies.get('loginname');
+// 	if (ctx.path.indexOf('login') == -1 && (!username || !loginname)) {
+// 		ctx.redirect('https://aoshiman.com.cn/shopAdmin/html/login.shtml');
+// 		return;
+// 	}
+// 	await next();
+// }
 
-module.exports= app;
+module.exports = app;
 

@@ -9,7 +9,7 @@
     "dev": "pm2 start --watch --name DevShopServer ./bin/start.js ",
     "info": "pm2 list",
     "stop:dev": "pm2 stop --name DevShopServer",
-    "stop": "pm2 stop --name ShopServer"
+    "stop": "pm2 stop  shopServer"
   },
   "keywords": [
     "koa",
@@ -30,5 +30,8 @@
     "koa2-cors": "^2.0.6",
     "mongoose": "^5.2.9",
     "pm2": "^4.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.3.1"
   }
 }

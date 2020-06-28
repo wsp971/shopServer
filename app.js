@@ -37,6 +37,7 @@ app
 	.use(router.allowedMethods());
 
 router.get('/lala', async (ctx, next) => {
+	console.log('test lala');
 	ctx.body = { name: 'llaalal' };
 	await next();
 });

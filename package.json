@@ -18,7 +18,7 @@
   "author": "wangshiping5",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "crypto": "^1.0.1",
     "koa": "^2.5.2",
     "koa-bodyparser": "^4.2.1",

@@ -12,13 +12,22 @@ const shopRouter = require('./router/shop');
 const adminUserRouter = require('./router/adminUser');
 const dishRouter = require('./router/dishes');
 const miniProgram = require('./router/miniProgram');
+const checkLogin = require('./middlewares/checkLogin');
 
 //允许跨域访问 详细配置：https://www.npmjs.com/package/koa2-cors
+
+app.use(checkLogin([
+  '/miniProgram/getsessionkey'
+]))
 app.use(cors({
-	credentials: true
+  credentials: true
 }));
 
 app.use(koaParser());
+
+
+
+
 
 const options = { threshold: 2048 };
 
@@ -33,13 +42,13 @@ router.use('/dish', dishRouter.routes());
 router.use('/miniProgram', miniProgram.routes());
 
 app
-	.use(router.routes())
-	.use(router.allowedMethods());
+  .use(router.routes())
+  .use(router.allowedMethods());
 
 router.get('/lala', async (ctx, next) => {
-	console.log('test lala');
-	ctx.body = { name: 'llaalal' };
-	await next();
+  console.log('test lala');
+  ctx.body = { name: 'llaalal' };
+  await next();
 });
 
 // async function logincheck(ctx, next) {

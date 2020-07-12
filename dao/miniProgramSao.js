@@ -50,8 +50,6 @@ exports.syncClientUser = function (newUserObj) {
   });
 };
 
-
-
 exports.findClientUser = function (userObj) {
   return new Promise((resolve, reject) => {
     miniProgramUserModel.find(userObj, (err, result) => {

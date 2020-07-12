@@ -36,6 +36,7 @@ const shopSchema = new mongoose.Schema({
   star: Number,
   contacts: String,
   address: String,
+  level: Number,
   latLng: {
     lat: String,
     lng: String
@@ -53,6 +54,8 @@ const dishSchema = new mongoose.Schema({
   type: Number,
   tags: Array,
   price: Number,
+  prePrice: Number,
+  heatQuatity: Number,
   shopid: Number
 });
 
@@ -66,11 +69,18 @@ const clientUser = new mongoose.Schema({
   country: String,
   language: String,
   openid: String,
-  favDishes: [],
-  favShops: [],
-
+  sessionKey: String,
+  favDishes: [String],
+  favShops: [String],
+  disFavDishes: [String],
 });
 
+
+// // 保存用户sessionkey
+// const clientSession = new mongoose.Schema({
+//   openid:String,
+//   sessionKey:String
+// })
 
 
 const shopModel = mongoose.model('shop', shopSchema);

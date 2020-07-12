@@ -19,6 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
+    "crypto": "^1.0.1",
     "koa": "^2.5.2",
     "koa-bodyparser": "^4.2.1",
     "koa-compose": "^4.1.0",
@@ -28,7 +29,7 @@
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
     "koa2-cors": "^2.0.6",
-    "mongoose": "^5.2.9",
+    "mongoose": "^5.9.21",
     "pm2": "^4.4.0"
   },
   "devDependencies": {
